@@ -26,29 +26,30 @@ CREATE TABLE organizations (
 
 CREATE TABLE users_organizations (
 	username VARCHAR(45) FOREIGN KEY REFERENCES users(username) NOT NULL,
-	organizationId INT FOREIGN KEY REFERENCES organizations(id) NOT NULL,
-	UNIQUE (username, organizationId)
+	organization_id INT FOREIGN KEY REFERENCES organizations(id) NOT NULL,
+	UNIQUE (username, organization_id)
 );
 
 CREATE TABLE projects (
 	id INT PRIMARY KEY IDENTITY NOT NULL,
 	name VARCHAR(100) NOT NULL,
-	organizationId INT FOREIGN KEY REFERENCES organizations(id) NOT NULL
+	organization_id INT FOREIGN KEY REFERENCES organizations(id) NOT NULL
 );
 
 CREATE TABLE phases (
 	id INT PRIMARY KEY IDENTITY NOT NULL,
 	name VARCHAR(100) NOT NULL,
-	projectId INT FOREIGN KEY REFERENCES projects(id) NOT NULL
+	sort INT NOT NULL,
+	project_id INT FOREIGN KEY REFERENCES projects(id) NOT NULL
 );
 
 CREATE TABLE activities (
 	id INT PRIMARY KEY IDENTITY NOT NULL,
 	short_description VARCHAR(50) NOT NULL,
 	details VARCHAR(255) DEFAULT NULL,
-	activity_start DATE NOT NULL,
-	activity_end DATE DEFAULT NULL,
-	phaseId INT FOREIGN KEY REFERENCES phases(id) NOT NULL,
+	activity_start SMALLDATETIME  NOT NULL,
+	activity_end SMALLDATETIME  DEFAULT NULL,
+	phase_id INT FOREIGN KEY REFERENCES phases(id) NOT NULL,
 	username VARCHAR(45) FOREIGN KEY REFERENCES users(username) NOT NULL
 );
 	

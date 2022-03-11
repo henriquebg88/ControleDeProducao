@@ -5,38 +5,50 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "organizations")
-public class Organization {
+@Table(name = "projects")
+public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private int organization_id;
 
-    @OneToMany(mappedBy = "organization_id")
-    private List<Project> projects;
+    @OneToMany(mappedBy = "project_id")
+    private List<Phase> phases;
 
-    public Organization (){}
 
-    public Organization(String name, List<Project> projects) {
+
+    public Project(){}
+
+    public Project(String name, int organization_id, List<Phase> phases) {
         this.name = name;
-        this.projects = projects;
+        this.organization_id = organization_id;
+        this.phases = phases;
     }
 
-    public List<Project> getProjects() {
-        return projects;
+    public List<Phase> getPhases() {
+        return phases;
     }
 
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
+    }
+
+    public int getOrganization_id() {
+        return organization_id;
+    }
+
+    public void setOrganization_id(int organization_id) {
+        this.organization_id = organization_id;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Organization that = (Organization) o;
-        return getId() == that.getId();
+        Project project = (Project) o;
+        return getId() == project.getId();
     }
 
     @Override
