@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+:root{
+    --main-color:           #B1BEFF;
+    --main-text-color:      #939393;
+    --main-border-color:    #CCC;
+    --secondary-color:      #EDEDED;
+}
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+ul {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+svg.small-icon{
+    width: 20px;
+    color: var(--main-text-color);
+}
+
+li.btn-secondary{
+    margin: 3px 0;
+
+    background: var(--secondary-color);
+    border: 0.1px solid var(--main-border-color);
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    color: var(--main-text-color);
+    font-style: normal;
+    font-weight: 100;
+    font-size: 18px;
+    line-height: 21px;
+
+    text-align: center;
+}
+li.btn-secondary:hover{
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    border-color: #b1b1b1;
+
+    color: inherit;
+    background: var(--secondary-color);
+}
+li.btn-secondary:hover .icons{
+    display: block;
+}
+.btn .icons{
+    display: none;
+    text-align: right;
+    position: absolute;
+    transform: translateX(880%);
+}
+.btn p{
+    margin: 10px 100px;
+}
+li.btn{
+    position: relative;
+}
+
+.fit-items{
+    width: fit-content;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}

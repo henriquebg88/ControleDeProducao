@@ -36,10 +36,16 @@ public class OrganizationsRepository {
     }
 
     @Transactional
-    public void deleteById(int id){
-        var query = entityManager.createQuery("delete from Organization where id=:id");
-        query.setParameter("id",id);
-        query.executeUpdate();
+    public boolean deleteById(int id){
+        var organizations = this.findById(id);
+
+        if(organizations != null){
+            var query = entityManager.createQuery("delete from Organization where id=:id");
+            query.setParameter("id",id);
+            query.executeUpdate();
+            return true;
+        }
+        return false;
     }
 
 }

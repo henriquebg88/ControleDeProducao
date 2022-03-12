@@ -18,5 +18,7 @@ public class OrganizationServices {
         return organizationsRepo.findAll();
     }
     public void save(Organization organization){ organizationsRepo.save(organization);}
+    public Organization findById(int id){ return organizationsRepo.findById(id); }
+    public boolean deleteById(int id){ return organizationsRepo.deleteById(id); }
 
 }
