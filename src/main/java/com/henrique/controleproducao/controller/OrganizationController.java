@@ -42,7 +42,7 @@ public class OrganizationController {
     }
 
     @GetMapping("/{id}")
-    public String showOrganization(@PathVariable    ("id") int id, Model model){
+    public String showOrganization(@PathVariable("id") int id, Model model){
 
         var organization = organizationServices.findById(id);
 

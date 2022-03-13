@@ -12,18 +12,23 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private int organization_id;
 
-    @OneToMany(mappedBy = "project_id")
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Phase> phases;
+
 
 
 
     public Project(){}
 
-    public Project(String name, int organization_id, List<Phase> phases) {
+    public Project(String name, Organization organization, List<Phase> phases) {
         this.name = name;
-        this.organization_id = organization_id;
+
+        this.organization = organization;
         this.phases = phases;
     }
 
@@ -33,14 +38,6 @@ public class Project {
 
     public void setPhases(List<Phase> phases) {
         this.phases = phases;
-    }
-
-    public int getOrganization_id() {
-        return organization_id;
-    }
-
-    public void setOrganization_id(int organization_id) {
-        this.organization_id = organization_id;
     }
 
     @Override
@@ -71,4 +68,13 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
 }

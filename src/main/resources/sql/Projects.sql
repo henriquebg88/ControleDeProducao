@@ -1,10 +1,12 @@
 USE controleProducao;
 GO
 
+DROP TABLE projects;
+
 CREATE TABLE projects (
 	id INT PRIMARY KEY IDENTITY NOT NULL,
 	name VARCHAR(100) NOT NULL,
-	organization_id INT FOREIGN KEY REFERENCES organizations(id) NOT NULL
+	organization_id INT FOREIGN KEY REFERENCES organizations(id) ON DELETE CASCADE NOT NULL
 );
 
 INSERT INTO projects VALUES 

@@ -13,13 +13,13 @@
 <body>
 
     <div class="container">
-        <h1>Organizações</h1>
+        <h1>Projeto</h1>
 
         <form action="#" method="post"
             th:action="@{/projects/save}"
             th:object="${project}">
 
-            <input  type="hidden"   th:field="*{organization_id}" />
+            <input  type="hidden"   th:field="*{organization.id}" />
             <input  type="hidden"   th:field="*{id}"/>
             <input  type="text"     th:field="*{name}" class="form-control mb-4 col-4
 "                   placeholder="Nome" value="${project.name}"

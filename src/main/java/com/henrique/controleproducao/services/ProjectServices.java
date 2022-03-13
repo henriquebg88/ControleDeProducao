@@ -22,4 +22,17 @@ public class ProjectServices {
 
         return response.get();
     }
+
+    public Project save(Project project){
+        var createdProject = projectsRepository.save(project);
+        return createdProject;
+    }
+
+    public void delete(int id){
+        projectsRepository.deleteById(id);
+    }
+
+    public void delete(Project project){
+        projectsRepository.delete(project);
+    }
 }

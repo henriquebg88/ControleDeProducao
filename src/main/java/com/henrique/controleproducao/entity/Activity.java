@@ -19,17 +19,23 @@ public class Activity {
     private String details;
     private LocalDateTime activity_start;
     private LocalDateTime activity_end;
-    private int phase_id;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    private Phase phase;
+
+
+
+
 
     public Activity() {
     }
 
-    public Activity(String short_description, String details, LocalDateTime activity_start, LocalDateTime activity_end, int phase_id) {
+    public Activity(String short_description, String details, LocalDateTime activity_start, LocalDateTime activity_end, Phase phase) {
         this.short_description = short_description;
         this.details = details;
         this.activity_start = activity_start;
         this.activity_end = activity_end;
-        this.phase_id = phase_id;
+        this.phase = phase;
     }
 
     @Override
@@ -86,11 +92,11 @@ public class Activity {
         this.activity_start = activity_start;
     }
 
-    public int getPhase_id() {
-        return phase_id;
+    public Phase getPhase() {
+        return phase;
     }
 
-    public void setPhase_id(int phase_id) {
-        this.phase_id = phase_id;
+    public void setPhase(Phase phase) {
+        this.phase = phase;
     }
 }

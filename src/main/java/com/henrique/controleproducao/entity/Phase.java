@@ -13,18 +13,22 @@ public class Phase {
     private int id;
     private String name;
     private int sort;
-    private int project_id;
 
-    @OneToMany(mappedBy = "phase_id")
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    @OneToMany(mappedBy = "phase", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Activity> activities;
+
 
     public Phase() {
     }
 
-    public Phase(String name, int sort, int project_id, List<Activity> activities) {
+    public Phase(String name, int sort, Project project, List<Activity> activities) {
         this.name = name;
         this.sort = sort;
-        this.project_id = project_id;
+        this.project = project;
         this.activities = activities;
     }
 
@@ -73,11 +77,12 @@ public class Phase {
         this.sort = sort;
     }
 
-    public int getProject_id() {
-        return project_id;
+    public void setProject(Project project) {
+        this.project = project;
     }
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public Project getProject() {
+        return project;
     }
+
 }

@@ -34,14 +34,14 @@ CREATE TABLE users_organizations (
 CREATE TABLE projects (
 	id					INT PRIMARY KEY IDENTITY NOT NULL,
 	name				VARCHAR(100) NOT NULL,
-	organization_id		INT FOREIGN KEY REFERENCES organizations(id) NOT NULL
+	organization_id		INT FOREIGN KEY REFERENCES organizations(id) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE phases (
 	id					INT PRIMARY KEY IDENTITY NOT NULL,
 	name				VARCHAR(100) NOT NULL,
 	sort				INT NOT NULL,
-	project_id			INT FOREIGN KEY REFERENCES projects(id) NOT NULL
+	project_id			INT FOREIGN KEY REFERENCES projects(id) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE activities (
@@ -50,7 +50,7 @@ CREATE TABLE activities (
 	details				VARCHAR(255) DEFAULT NULL,
 	activity_start		DATETIME  NOT NULL,
 	activity_end		DATETIME  DEFAULT NULL,
-	phase_id			INT FOREIGN KEY REFERENCES phases(id) NOT NULL,
+	phase_id			INT FOREIGN KEY REFERENCES phases(id) DEFAULT NULL,
 	username			VARCHAR(45) FOREIGN KEY REFERENCES users(username) NOT NULL
 );
 	
