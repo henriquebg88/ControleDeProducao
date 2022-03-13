@@ -30,25 +30,27 @@
             </div>
         </header>
 
-
-
         <main class="row content-center">
 
             <div class="row content-center">
-                <p>Organizações</p>
-            </div>
 
-            <div class="row content-center">
                 <ul class="row fit-items">
-                    <li th:each="organization : ${organizations}"
+                    <li class="btn btn-secondary">
+                        <a th:text="${organization.name}" href="#"></a>
+                    </li>
+                    <li>
+                        <p class="mt-3">Projetos</p>
+                    </li>
+
+                    <li th:each="project : ${organization.projects}"
                         class="btn btn-secondary">
                         <div class="icons">
-                            <a  th:href="@{/organizations/update(id=${organization.id})}" class="icon">
+                            <a  th:href="@{/projects/update(id=${project.id})}" class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="small-icon h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                 </svg>
                             </a>
-                            <a th:href="@{/organizations/delete(id=${organization.id})}"
+                            <a th:href="@{/projects/delete(id=${project.id})}"
                                onclick="if(!(confirm('Remover dos registros permanentemente?'))) return false"
                                class="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="small-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -56,23 +58,22 @@
                                 </svg>
                             </a>
                         </div>
-                        <a  th:href="@{/organizations/{id}(id=${organization.id})}"
-                            th:text="${organization.name}"
-                        ></a>
+                        <a  th:href="@{/projects/{id}(id=${project.id})}"
+                            th:text="${project.name}"></a>
                     </li>
                 </ul>
             </div>
             <div class="row content-center">
-                <a  th:href="@{/organizations/create}"
+                <a  th:href="@{/projects/create}"
                     class="btn btn-primary mt-2">
-                    Nova
+                    Novo
                 </a>
             </div>
         </main>
 
 
         <footer class="row">
-            <a href="/">
+            <a href="/organizations">
                 <svg xmlns="http://www.w3.org/2000/svg" class="small-icon primary-color h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
                     style="width: 40px;"
                 >
