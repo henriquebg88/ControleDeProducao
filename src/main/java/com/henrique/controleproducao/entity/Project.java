@@ -13,7 +13,7 @@ public class Project {
     private int id;
     private String name;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn(name = "organization_id")
     private Organization organization;
 

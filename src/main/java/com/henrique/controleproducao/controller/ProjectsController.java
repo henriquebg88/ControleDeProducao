@@ -1,5 +1,6 @@
 package com.henrique.controleproducao.controller;
 
+import com.henrique.controleproducao.common.DataHoraServices;
 import com.henrique.controleproducao.entity.Organization;
 import com.henrique.controleproducao.entity.Project;
 import com.henrique.controleproducao.services.OrganizationServices;
@@ -22,19 +23,12 @@ public class ProjectsController {
     private ProjectServices projectServices;
     @Autowired
     private OrganizationServices organizationServices;
-
-    private void definirHoraData(Model model){
-        var date = new Date();
-        var formatHora = new SimpleDateFormat("HH:MM");
-        var formatData = new SimpleDateFormat("EEEE, dd MMMM");
-
-        model.addAttribute("hora", formatHora.format(date));
-        model.addAttribute("data", formatData.format(date));
-    }
+    @Autowired
+    private DataHoraServices dataHoraServices;
 
     @GetMapping("/{id}")
     public String showProject(@PathVariable("id") int id, Model model){
-        definirHoraData(model);
+        dataHoraServices.definirModelHoraData(model);
 
         var project = projectServices.findById(id);
 //        var organization = organizationServices.findById(project.getOrganization_id());
@@ -47,7 +41,7 @@ public class ProjectsController {
 
     @GetMapping("/create")
     public String createProject(@RequestParam("organization_id") int organization_id, Model model){
-        definirHoraData(model);
+        dataHoraServices.definirModelHoraData(model);
 
         var organization = new Organization();
         organization.setId(organization_id);
@@ -63,7 +57,7 @@ public class ProjectsController {
 
     @GetMapping("/update")
     public String updateProject(@RequestParam("id") int id, Model model){
-        definirHoraData(model);
+        dataHoraServices.definirModelHoraData(model);
 
         var project = projectServices.findById(id);
 

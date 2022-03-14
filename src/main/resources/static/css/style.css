@@ -9,6 +9,8 @@
 
 body{
     height: 100%;
+     background-image: url("/../img/background-image-1.png");
+     background-size: cover;
 }
 
 *{

@@ -13,7 +13,7 @@ public class Organization {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "organization")
     private List<Project> projects;
 
     public Organization (){}

@@ -20,10 +20,8 @@ public class Activity {
     private LocalDateTime activity_start;
     private LocalDateTime activity_end;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne
     private Phase phase;
-
-
 
 
 
