@@ -27,21 +27,36 @@
         </div>
     </header>
 
-    <main class="row content-center">
+    <!--  CONTEÚDO VISÍVEL SOMENTE SE POSSUIR AO MENOS UMA ORGANIZAÇÃO  -->
+    <main class="row content-center" th:if="${not #lists.isEmpty(organizations)}">
+        <!--  SELECT DISPONÍVEL APENAS SE HOUVER MAIS DE UMA ORGANIZAÇÃO  -->
+        <select name="" class="clean-select fs-4 fw-normal"
+                th:if="${#lists.size(organizations) > 1}">
+                <option th:each="organization : ${organizations}"
+                        th:value="${organization.id}"
+                        th:text="${organization.name}" >
+                </option>
+        </select>
+        <!--  PARÁGRAFO DISPONÍVEL APENAS SE HOUVER UMA ÚNICA ORGANIZAÇÃO  -->
+        <p th:if="${#lists.size(organizations) == 1}" th:text="${organizations.get(0).name}" class="fs-4 fw-normal"></p>
+        <div class="mb-3">
+            <label for="" class="form-label">Projeto</label>
+            <select name="" class="form-select" onchange="loadProjects()">
+                <option th:each="projects : ${projects}"
+                        th:value="${projects.id}"
+                        th:text="${projects.name}">
+                </option>
+            </select>
+
+        </div>
 
         <form action="" th:object="${activity}">
             <input type="hidden" th:field="*{activity_start}">
+
             <div class="mb-3">
-                <label for="" class="form-label">Projetos</label>
-                <select name="" class="form-select" onchange="loadProjects()">
-                    <option th:each="projects : ${projects}" th:value="${projects.id}" th:text="${projects.name}"></option>
-                </select>
-                
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Etapas</label>
+                <label for="" class="form-label">Etapa</label>
                 <select name="" class="form-select">
-                    <option value=""></option>
+                    <option th:each="phase : ${phases}" th:value="${phase.id}" th:text="${phase.name}"></option>
                 </select>
             </div>
             <label for="" class="form-label"></label>

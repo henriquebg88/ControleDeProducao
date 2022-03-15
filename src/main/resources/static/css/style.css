@@ -32,6 +32,10 @@ a {
     text-decoration: none;
     color: inherit;
 }
+input, select, textarea {
+    opacity: .7;
+}
+
 footer.row a{
     width: fit-content;
 }
@@ -165,6 +169,17 @@ label.form-check-label {
 }
 
 .form-control:disabled, .form-control[readonly] {
-    opacity: .8;
+    opacity: .6;
     color: #ccc;
+}
+
+.clean-select{
+    background: none;
+    width: fit-content;
+    outline: none;
+    border: none;
+    text-align: center;
+}
+.clean-select:focus-visible {
+    outline: none;
 }
