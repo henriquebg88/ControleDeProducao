@@ -1,5 +1,6 @@
 package com.henrique.controleproducao.controller.api;
 
+import com.henrique.controleproducao.entity.Phase;
 import com.henrique.controleproducao.entity.Project;
 import com.henrique.controleproducao.services.ProjectServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,10 @@ public class ProjectsApiController {
     @Autowired
     private ProjectServices projectServices;
 
-    @GetMapping("/organization/{id}")
-    public List<Project> findByOrganizationId(@PathVariable int id){
+    @GetMapping("/{id}/phases")
+    public List<Phase> findProjectPhases(@PathVariable("id") int id){
 
-
-        var projectsFromOrganization = projectServices.findByOrganizationId(id);
-
-
-        return projectsFromOrganization;
+        return projectServices.findById(id).getPhases();
     }
 
 }
