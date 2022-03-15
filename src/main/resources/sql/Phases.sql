@@ -10,9 +10,6 @@ CREATE TABLE phases (
 	project_id INT FOREIGN KEY REFERENCES projects(id) ON DELETE CASCADE NOT NULL
 );
 
-SELECT * FROM projects;
-SELECT * FROM phases;
-
 INSERT INTO phases VALUES 
 	('Estudo preeliminar',1, 2),
 	('Anteprojeto',2, 2),
