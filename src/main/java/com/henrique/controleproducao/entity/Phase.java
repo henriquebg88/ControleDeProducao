@@ -1,5 +1,8 @@
 package com.henrique.controleproducao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -16,9 +19,11 @@ public class Phase {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @JsonBackReference
     private Project project;
 
     @OneToMany(mappedBy = "phase")
+    @JsonManagedReference
     private List<Activity> activities;
 
     public Phase() {

@@ -11,5 +11,5 @@ import java.util.List;
 @RepositoryRestResource(path = "projects")
 public interface ProjectsRepository extends JpaRepository<Project, Integer> {
 
-
+    public List<Project> findByOrganizationId(int id);
 }

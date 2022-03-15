@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizações</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="row">
+        <div class="col">
+            <p class="fs-4 fw-normal" th:text="${data}"></p>
+            <p>Horas restantes</p>
+        </div>
+        <div class="col content-center">
+            <p>Bem vindo, usuário</p>
+        </div>
+        <div class="col text-end">
+            <p><span th:text="${hora}"></span>: <span th:text="${minuto}"></span></p>
+        </div>
+    </header>
+
+    <main class="row content-center">
+
+            <div class="row">
+                <form action="#" class="input-time container" th:action="@{/activities/form}"  method="post">
+                    <div class="row">
+                        <input type="number" th:value="${hora}" value="00" style="text-align:end;"
+                            minlength="2" maxlength="2" min="00" max="23" aria-valuemax="23" aria-valuemin="00"
+                            name="hora" class="col"/> <span class="col-auto">:</span>
+                        <input type="number" th:value="${minuto}" value="00"
+                            minlength="2" maxlength="2" min="00" max="59" aria-valuemax="59" aria-valuemin="00"
+                            name="minuto" class="col"/>
+                    </div>
+                    <div class="row">
+                        <p class="fs-4 fw-normal">Bom dia, usuário!</p>
+                    </div>
+                    <div class="row">
+                        <p>Marque o início de sua atividade!</p>
+                    </div>
+                    <div class="row">
+                    <button type="submit" class="btn btn-primary">Registrar início</button>
+                    </div>
+                </form>
+            </div>
+
+    </main>
+
+    <footer class="row">
+        <a href="javascript:history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="small-icon primary-color h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                 style="width: 40px;"
+            >
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </footer>
+
+
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+
+</html>

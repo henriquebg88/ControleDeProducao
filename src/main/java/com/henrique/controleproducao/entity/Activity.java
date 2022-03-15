@@ -1,5 +1,6 @@
 package com.henrique.controleproducao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Activity {
     private LocalDateTime activity_end;
 
     @ManyToOne
+    @JsonBackReference
     private Phase phase;
 
 

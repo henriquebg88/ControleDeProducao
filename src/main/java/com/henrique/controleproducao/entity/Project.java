@@ -1,5 +1,8 @@
 package com.henrique.controleproducao.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -15,9 +18,11 @@ public class Project {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
+    @JsonBackReference
     private Organization organization;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Phase> phases;
 
 

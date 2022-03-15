@@ -1,4 +1,6 @@
 
+DROP TABLE organizations;
+
 CREATE TABLE organizations (
 	id					INT PRIMARY KEY IDENTITY NOT NULL,
 	name				VARCHAR(100) NOT NULL

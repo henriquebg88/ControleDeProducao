@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizações</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header class="row">
+        <div class="col">
+            <p class="fs-4 fw-normal" th:text="${data}"></p>
+            <p>Horas restantes</p>
+        </div>
+        <div class="col content-center">
+            <p>Bem vindo, usuário</p>
+        </div>
+        <div class="col text-end">
+            <p ><span th:text="${hora}"></span>: <span th:text="${minuto}"></span></p>
+        </div>
+    </header>
+
+    <main class="row content-center">
+
+        <form action="" th:object="${activity}">
+            <input type="hidden" th:field="*{activity_start}">
+            <div class="mb-3">
+                <label for="" class="form-label">Projetos</label>
+                <select name="" class="form-select" onchange="loadProjects()">
+                    <option th:each="projects : ${projects}" th:value="${projects.id}" th:text="${projects.name}"></option>
+                </select>
+                
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Etapas</label>
+                <select name="" class="form-select">
+                    <option value=""></option>
+                </select>
+            </div>
+            <label for="" class="form-label"></label>
+            <textarea class="form-control mb-3" name="" id="" cols="30" rows="10"></textarea>
+            <div class="form-check mb-3" style="justify-content: space-between;">
+                <div>
+                    <input class="form-check-input" type="checkbox"/>
+                    <label class="form-check-label" for="">Anotar atividade depois</label>
+                </div>
+                <p>00:00</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Registrar atividade</button>
+        </form>
+        
+    </main>
+
+    <footer class="row">
+        <a href="javascript:history.back()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="small-icon primary-color h-5 w-5" viewBox="0 0 20 20" fill="currentColor"
+                 style="width: 40px;"
+            >
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </footer>
+
+
+</div>
+
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/activity.js}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+<script>
+    function loadProjects(){
+        
+        console.log("Load chamado");
+
+        $.ajax({
+            type: 'get',
+            url: '/api/projects/organization/1',
+            success:    projects => {
+                console.log('Deu certo');
+                console.log(projects);
+            },
+            error:      () => {
+                console.log("Falhou");
+            },
+            complete:   () => {
+                console.log("Completado");
+            }
+
+        })
+    }
+</script>
+</body>
+
+</html>

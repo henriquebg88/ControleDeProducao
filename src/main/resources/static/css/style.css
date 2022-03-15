@@ -12,6 +12,13 @@ body{
      background-image: url("/../img/background-image-1.png");
      background-size: cover;
 }
+header.row{
+    margin-top: 20px;
+}
+main.row {
+    width: 700px;
+    margin: auto;
+}
 
 *{
     font-family: 'Roboto', sans-serif;
@@ -24,6 +31,9 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+}
+footer.row a{
+    width: fit-content;
 }
 a:hover {
     color: inherit;
@@ -108,4 +118,53 @@ li.btn{
 .btn-primary:hover{
     background: #8292e1;
     border-color: inherit;
+}
+
+form.input-time input, form.input-time span{
+    font-size: 230px;
+    background: none;
+    border: none;
+    color: var(--main-color);
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+    color: var(--main-color);
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 50%);
+}
+form.input-time{
+    /*background: white;*/
+    display: flex;
+    flex-direction: column;
+}
+button.btn.btn-primary{
+    margin: auto;
+}
+form.input-time input:focus-visible {
+    outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+.form-check{
+    display: flex;
+}
+label.form-check-label {
+    margin-left: 20px;
+}
+.form-check-input {
+    width: 1.5em;
+    height: 1.5em;
+    margin-top: 0;
+}
+.form-check-input:checked{
+    background-color: var(--main-color);
+        border-color: var(--main-color);
+}
+
+.form-control:disabled, .form-control[readonly] {
+    opacity: .8;
+    color: #ccc;
 }

@@ -35,4 +35,6 @@ public class ProjectServices {
     public void delete(Project project){
         projectsRepository.delete(project);
     }
+
+    public List<Project> findByOrganizationId(int id){return projectsRepository.findByOrganizationId(id);}
 }

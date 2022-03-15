@@ -1,5 +1,7 @@
 package com.henrique.controleproducao.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class Organization {
     private String name;
 
     @OneToMany(mappedBy = "organization")
+    @JsonManagedReference
     private List<Project> projects;
 
     public Organization (){}

@@ -1,4 +1,4 @@
-package com.henrique.controleproducao.controller;
+package com.henrique.controleproducao.controller.api;
 
 import com.henrique.controleproducao.dao.OrganizationsRepository;
 import com.henrique.controleproducao.entity.Organization;
