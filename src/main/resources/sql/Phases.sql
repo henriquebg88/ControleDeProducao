@@ -25,5 +25,10 @@ SELECT projects.name as Projetos, phases.sort as Ordem, phases.name as Etapas FR
 	INNER JOIN phases ON project_id = projects.id
 	ORDER BY projects.name, phases.sort;
 
+SELECT * FROM phases;
 
+DELETE FROM phases WHERE id=1;
+GO
+DBCC CHECKIDENT (phases, RESEED, 0);
+GO
 

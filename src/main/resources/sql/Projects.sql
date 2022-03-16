@@ -21,3 +21,8 @@ SELECT organizations.name as organização, projects.name as projeto FROM organiza
 SELECT * FROM organizations;
 SELECT * FROM projects;
 
+DELETE FROM projects WHERE id=1;
+GO
+DBCC CHECKIDENT (projects, RESEED, 0);
+GO
+

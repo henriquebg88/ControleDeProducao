@@ -13,4 +13,7 @@ INSERT INTO organizations VALUES
 
 SELECT * FROM organizations;
 
-DELETE FROM organizations WHERE id=1;
+DELETE FROM organizations WHERE id=id;
+GO
+DBCC CHECKIDENT (organizations, RESEED, 0);
+GO

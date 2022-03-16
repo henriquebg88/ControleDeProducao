@@ -5,9 +5,9 @@ DROP TABLE activities;
 
 CREATE TABLE activities (
 	id					INT PRIMARY KEY IDENTITY NOT NULL,
-	short_description	VARCHAR(50)		NOT NULL,
+	short_description	VARCHAR(50)		DEFAULT NULL,
 	details				VARCHAR(255)	DEFAULT NULL,
-	activity_start		DATETIME		DEFAULT NULL,
+	activity_start		DATETIME		NOT NULL,
 	activity_end		DATETIME		DEFAULT NULL,
 	phase_id			INT FOREIGN KEY REFERENCES phases(id) ON DELETE SET NULL,
 );
@@ -35,5 +35,11 @@ SELECT	phases.name AS Etapas,
 			FROM phases
 			INNER JOIN activities ON activities.phase_id = phases.id;
 
+DELETE FROM activities WHERE id=id;
 
+DELETE FROM activities WHERE id=11;
+GO
+DBCC CHECKIDENT (activities, RESEED, 0);
+GO
 
+SELECT * FROM activities WHERE activity_end IS NULL ;
