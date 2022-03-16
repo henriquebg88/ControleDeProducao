@@ -30,7 +30,7 @@
     <main class="row content-center">
 
             <div class="row">
-                <form action="#" class="input-time container" th:action="@{/activities/form}"  method="post">
+                <form action="#" class="input-time container" th:action="@{/activities/create}"  method="post">
                     <div class="row">
                         <input type="number" th:value="${hora}" value="00" style="text-align:end;"
                             minlength="2" maxlength="2" min="00" max="23" aria-valuemax="23" aria-valuemin="00"
@@ -43,7 +43,8 @@
                         <p class="fs-4 fw-normal">Bom dia, usuário!</p>
                     </div>
                     <div class="row">
-                        <p>Digite acima o horário de início da sua atividade!</p>
+                        <p th:if="${unfinishedActivity} == null">Digite acima o horário de início de sua atividade</p>
+                        <p th:if="${unfinishedActivity} != null">Digite acima o horário de finalização</p>
                     </div>
                     <div class="row">
                     <button type="submit" class="btn btn-primary">Registrar início</button>

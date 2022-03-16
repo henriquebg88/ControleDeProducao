@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @RepositoryRestResource(path = "activities")
 public interface ActivitiesRepository extends JpaRepository<Activity, Integer> {
+
 }
