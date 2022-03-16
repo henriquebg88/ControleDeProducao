@@ -1,6 +1,5 @@
 package com.henrique.controleproducao.controller;
 
-import com.henrique.controleproducao.common.DataHoraServices;
 import com.henrique.controleproducao.entity.Organization;
 import com.henrique.controleproducao.services.OrganizationServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/organizations")
@@ -17,8 +15,6 @@ public class OrganizationsController {
 
     @Autowired
     private OrganizationServices organizationServices;
-    @Autowired
-    private DataHoraServices dataHoraServices;
 
 
     @GetMapping
@@ -27,7 +23,7 @@ public class OrganizationsController {
         var organizations = organizationServices.findAll();
 
         model.addAttribute("organizations", organizations);
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         return "organizations/organizations-home";
     }
@@ -38,7 +34,7 @@ public class OrganizationsController {
         var organization = organizationServices.findById(id);
 
         model.addAttribute("organization", organization);
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         return "organizations/organizations-profile";
     }
@@ -47,7 +43,7 @@ public class OrganizationsController {
     public String createOrganization(Model model){
 
         model.addAttribute("organization", new Organization());
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         return "organizations/organizations-form";
     }
@@ -57,7 +53,7 @@ public class OrganizationsController {
 
         var organization = organizationServices.findById(id);
         model.addAttribute("organization", organization);
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         return "organizations/organizations-form";
     }

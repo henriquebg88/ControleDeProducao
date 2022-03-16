@@ -124,7 +124,7 @@ li.btn{
     border-color: inherit;
 }
 
-form.input-time input, form.input-time span{
+form.input-time input, form.input-time span.relogio{
     font-size: 230px;
     background: none;
     border: none;

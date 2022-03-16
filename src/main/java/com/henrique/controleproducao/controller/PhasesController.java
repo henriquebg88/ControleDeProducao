@@ -1,6 +1,5 @@
 package com.henrique.controleproducao.controller;
 
-import com.henrique.controleproducao.common.DataHoraServices;
 import com.henrique.controleproducao.entity.Phase;
 import com.henrique.controleproducao.entity.Project;
 import com.henrique.controleproducao.services.PhaseServices;
@@ -9,18 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/phases")
 public class PhasesController {
 
     @Autowired
     private PhaseServices phaseServices;
-    @Autowired
-    private DataHoraServices dataHoraServices;
+
 
     @GetMapping("/create")
     public String createPhase(@RequestParam("project_id") int project_id, Model model){
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         //Passar o ID do projeto
         var project = new Project();
@@ -36,7 +36,7 @@ public class PhasesController {
 
     @GetMapping("/update")
     public String updatePhase(@RequestParam("id") int id, Model model){
-        dataHoraServices.definirModelHoraData(model);
+        model.addAttribute("now", LocalDateTime.now());
 
         //Passar o objeto completo
         var phase = phaseServices.findById(id);

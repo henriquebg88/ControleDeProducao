@@ -12,6 +12,8 @@
 
 <body>
 
+    <header th:replace="~{shared\header :: header}"></header>
+
     <div class="container">
         <h1>Etapa</h1>
 
@@ -31,6 +33,8 @@
         <hr/>
         <a href="javascript:history.back()">Voltar</a>
     </div>
+
+    <footer th:replace="~{shared\footer :: footer}"></footer>
 
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>
