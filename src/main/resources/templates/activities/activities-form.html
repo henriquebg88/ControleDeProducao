@@ -12,103 +12,107 @@
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <header th:replace="~{shared\header :: header}"></header>
+        <header th:replace="~{shared\header :: header}"></header>
 
-    <!--  CONTEÚDO VISÍVEL SOMENTE SE POSSUIR AO MENOS UMA ORGANIZAÇÃO  -->
-    <main class="row content-center" th:if="${not #lists.isEmpty(organizations)}">
-        <!--  SELECT DISPONÍVEL APENAS SE HOUVER MAIS DE UMA ORGANIZAÇÃO  -->
-        <select name="" class="clean-select fs-4 fw-normal"
-                th:if="${#lists.size(organizations) > 1}">
+        <main class="row">
+            <!--  <SELECT> DISPONÍVEL APENAS SE HOUVER MAIS DE UMA ORGANIZAÇÃO  -->
+            <select name="" class="clean-select fs-4 fw-normal"
+                    th:if="${#lists.size(organizations) > 1}">
                 <option th:each="organization : ${organizations}"
                         th:value="${organization.id}"
-                        th:text="${organization.name}" >
-                </option>
-        </select>
-        <!--  PARÁGRAFO DISPONÍVEL APENAS SE HOUVER UMA ÚNICA ORGANIZAÇÃO  -->
-        <p th:if="${#lists.size(organizations) == 1}" th:text="${organizations.get(0).name}" class="fs-4 fw-normal"></p>
-        <div class="mb-3">
-            <label for="" class="form-label">Projeto</label>
-            <select name="" class="form-select" onchange="loadProjects()">
-                <option th:each="projects : ${projects}"
-                        th:value="${projects.id}"
-                        th:text="${projects.name}">
+                        th:text="${organization.name}">
                 </option>
             </select>
-
-        </div>
-
-        <form action="" th:object="${activity}">
-
-            <input type="hidden" th:field="*{activity_start}">
-            <input type="hidden" th:field="*{id}">
+            <!--  <P> DISPONÍVEL APENAS SE HOUVER UMA ÚNICA ORGANIZAÇÃO  -->
+            <p th:if="${#lists.size(organizations) == 1}" th:text="${organizations.get(0).name}" class="fs-4 fw-normal">
+            </p>
 
             <div class="mb-3">
-                <label for="" class="form-label">Etapa</label>
-                <select name="" class="form-select">
-                    <option th:each="phase : ${phases}" th:value="${phase.id}" th:text="${phase.name}"></option>
+                <label for="" class="form-label">Projeto</label>
+                <select name="" class="form-select" onchange="loadProjects()" required>
+                    <option th:each="projects : ${projects}"
+                            th:value="${projects.id}"
+                            th:text="${projects.name}">
+                    </option>
                 </select>
+
             </div>
 
-            <div class="mb-3">
-                <label for="">Atividade</label>
-                <input type="text" th:field="*{short_description}">
-            </div>
+            <form th:action="@{/activities/save}" th:object="${activity}" method="post">
 
-            <div>
-                <label for="" class="form-label">Detalhes</label>
-                <textarea class="form-control mb-3" name="" id="" cols="30" rows="10"
-                          th:field="*{short_description}">
-                </textarea>
-            </div>
+                <input type="hidden" th:field="*{activity_start}">
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{activity_end}">
 
-            <div class="form-check mb-3" style="justify-content: space-between;">
-                <div>
-                    <input class="form-check-input" type="checkbox"/>
-                    <label class="form-check-label" for="">Descrever depois...</label>
+                <div class="mb-3">
+                    <label for="" class="form-label">Etapa</label>
+                    <select name="" class="form-select mb-3" required
+                            th:field="*{phase}">
+                        <option th:each="phase : ${phases}" th:value="${phase.id}" th:text="${phase.name}"></option>
+                    </select>
                 </div>
-                <p><span th:text="${time.hour}"></span>:<span th:text="${time.minute}"></span></p>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Registrar atividade</button>
+                <div class="mb-3">
+                    <label class="form-label" for="">Atividade</label>
+                    <input class="form-control mb-3" type="text" th:field="*{short_description}" required>
+                </div>
 
-        </form>
-        
-    </main>
+                <div>
+                    <label for="" class="form-label">Detalhes</label>
+                    <textarea class="form-control mb-3" name="" id="" cols="30" rows="10" required
+                              style="height: 150px; !important"
+                              th:field="*{details}">
+                    </textarea>
+                </div>
 
-    <footer th:replace="~{shared\footer :: footer}"></footer>
+                <div class="form-check mb-3" style="justify-content: space-between;">
+                    <div>
+                        <input class="form-check-input" type="checkbox" />
+                        <label class="form-check-label" for="">Não incluir detalhes</label>
+                    </div>
+                    <p th:text="${#temporals.format(activity.activity_start, 'HH:mm')} + ' > ' + ${#temporals.format(activity.activity_end, 'HH:mm')}"></p>
+                </div>
+
+                <button type="submit" class="btn btn-primary" disabled>Registrar atividade</button>
+
+            </form>
+
+        </main>
+
+        <footer th:replace="~{shared\footer :: footer}"></footer>
 
 
-</div>
+    </div>
 
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script th:src="@{/js/activity.js}"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/activity.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+    <script th:src="@{/js/toggleSubmitButtonOnRequired.js}"></script>
+    <script>
+        // function loadProjects() {
 
-<script>
-    function loadProjects(){
-        
-        console.log("Load chamado");
+        //     console.log("Load chamado");
 
-        $.ajax({
-            type: 'get',
-            url: '/api/projects/organization/1',
-            success:    projects => {
-                console.log('Deu certo');
-                console.log(projects);
-            },
-            error:      () => {
-                console.log("Falhou");
-            },
-            complete:   () => {
-                console.log("Completado");
-            }
+        //     $.ajax({
+        //         type: 'get',
+        //         url: '/api/projects/organization/1',
+        //         success: projects => {
+        //             console.log('Deu certo');
+        //             console.log(projects);
+        //         },
+        //         error: () => {
+        //             console.log("Falhou");
+        //         },
+        //         complete: () => {
+        //             console.log("Completado");
+        //         }
 
-        })
-    }
-</script>
+        //     })
+        // }
+    </script>
 </body>
 
 </html>

@@ -6,5 +6,6 @@ console.log(nullfyTextAreaCheckBoxHTML);
 nullfyTextAreaCheckBoxHTML.addEventListener("click", () => {
     console.log("Clicado");
     textArea.toggleAttribute("disabled");
+    textArea.required = !textArea.required;
 });
     

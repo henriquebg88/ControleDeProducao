@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 :root{
-    --main-color:           #B1BEFF;
+    --main-color:           #4c68f8;
     --main-text-color:      #939393;
     --main-border-color:    #CCC;
     --secondary-color:      #EDEDED;
@@ -140,6 +140,15 @@ form.input-time{
 }
 button.btn.btn-primary{
     margin: auto;
+}
+
+.btn.disabled, .btn:disabled, fieldset:disabled .btn {
+    cursor: not-allowed;
+}
+.btn-primary.disabled, .btn-primary:disabled {
+    color: inherit;
+    background-color: inherit;
+    border-color: inherit;
 }
 form.input-time input:focus-visible {
     outline: none;

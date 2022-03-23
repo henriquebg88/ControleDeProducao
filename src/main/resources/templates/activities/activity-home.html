@@ -12,21 +12,24 @@
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <header th:replace="~{shared\header :: header}"></header>
+        <header th:replace="~{shared\header :: header}"></header>
 
-    <main class="row content-center">
+        <main class="row content-center">
 
             <div class="row">
-                <form action="#" class="input-time container" th:action="@{/activities/create}"  method="post">
+                <form action="#" class="input-time container"
+                      th:action="${unfinishedActivity} == null? @{/activities/create} : @{/activities/update}"
+                      method="post">
                     <div class="row">
-                        <input type="number" th:value="${#temporals.format(now, 'HH')}" value="00" style="text-align:end;"
-                            minlength="2" maxlength="2" min="00" max="23" aria-valuemax="23" aria-valuemin="00"
-                            name="hora" class="col"/> <span class="col-auto relogio">:</span>
+                        <input type="number" th:value="${#temporals.format(now, 'HH')}" value="00"
+                               style="text-align:end;"
+                               minlength="2" maxlength="2" min="00" max="23" aria-valuemax="23" aria-valuemin="00"
+                               name="hora" class="col" required /> <span class="col-auto relogio">:</span>
                         <input type="number" th:value="${#temporals.format(now, 'mm')}" value="00"
-                            minlength="2" maxlength="2" min="00" max="59" aria-valuemax="59" aria-valuemin="00"
-                            name="minuto" class="col"/>
+                               minlength="2" maxlength="2" min="00" max="59" aria-valuemax="59" aria-valuemin="00"
+                               name="minuto" class="col" required />
                     </div>
                     <div class="row">
                         <p class="fs-4 fw-normal">Bom dia, usuário!</p>
@@ -34,25 +37,27 @@
                     <div class="row">
                         <p th:if="${unfinishedActivity} == null">Digite acima o horário de início de sua atividade</p>
                         <p th:if="${unfinishedActivity} != null">
-                            Digite acima o horário de finalização iniciada às <span class="fs-5" th:text="${#temporals.format(unfinishedActivity.activity_start,'HH:mm')}"></span>
+                            Digite acima o horário de finalização iniciada às <span class="fs-5"
+                                  th:text="${#temporals.format(unfinishedActivity.activity_start,'HH:mm')}"></span>
                         </p>
 
                     </div>
                     <div class="row">
-                    <button type="submit" class="btn btn-primary" th:text="${unfinishedActivity} == null? 'Iniciar' : 'Finalizar'"></button>
+                        <button type="submit" class="btn btn-primary"
+                                th:text="${unfinishedActivity} == null? 'Iniciar' : 'Finalizar'"></button>
                     </div>
                 </form>
 
             </div>
 
-    </main>
+        </main>
 
-    <footer th:replace="~{shared\footer :: footer}"></footer>
+        <footer th:replace="~{shared\footer :: footer}"></footer>
 
 
-</div>
+    </div>
 
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 
 </body>
 

@@ -39,6 +39,8 @@ DELETE FROM activities WHERE id=id;
 
 DELETE FROM activities WHERE id=11;
 GO
+DELETE FROM activities WHERE activity_end IS NULL ;
+
 DBCC CHECKIDENT (activities, RESEED, 0);
 GO
 

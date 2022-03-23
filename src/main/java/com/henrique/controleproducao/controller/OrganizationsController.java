@@ -17,7 +17,7 @@ public class OrganizationsController {
     private OrganizationServices organizationServices;
 
 
-    @GetMapping
+    @GetMapping("")
     public String showOrganizations(Model model) {
 
         var organizations = organizationServices.findAll();
