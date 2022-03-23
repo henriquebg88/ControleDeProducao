@@ -18,7 +18,7 @@
 
         <main class="row">
             <!--  <SELECT> DISPONÍVEL APENAS SE HOUVER MAIS DE UMA ORGANIZAÇÃO  -->
-            <select name="" class="clean-select fs-4 fw-normal"
+            <select id="organizations" name="" class="clean-select fs-4 fw-normal"
                     th:if="${#lists.size(organizations) > 1}">
                 <option th:each="organization : ${organizations}"
                         th:value="${organization.id}"
@@ -31,7 +31,7 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">Projeto</label>
-                <select name="" class="form-select" onchange="loadProjects()" required>
+                <select id="projects" name="" class="form-select" onchange="loadProjects()" required>
                     <option th:each="projects : ${projects}"
                             th:value="${projects.id}"
                             th:text="${projects.name}">
@@ -48,7 +48,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Etapa</label>
-                    <select name="" class="form-select mb-3" required
+                    <select id="phases" name="" class="form-select mb-3" required
                             th:field="*{phase}">
                         <option th:each="phase : ${phases}" th:value="${phase.id}" th:text="${phase.name}"></option>
                     </select>
@@ -92,26 +92,66 @@
 
     <script th:src="@{/js/toggleSubmitButtonOnRequired.js}"></script>
     <script>
-        // function loadProjects() {
+        var selectOrganizationsHTML = document.querySelector('#organizations');
+        var selectProjectsHTML = document.querySelector('#projects');
+        var selectPhasesHTML = document.querySelector('#phases');
 
-        //     console.log("Load chamado");
+        //Ao selecionar organização, carregar novos projetos
+        selectOrganizationsHTML.addEventListener("input", loadProjects);
 
-        //     $.ajax({
-        //         type: 'get',
-        //         url: '/api/projects/organization/1',
-        //         success: projects => {
-        //             console.log('Deu certo');
-        //             console.log(projects);
-        //         },
-        //         error: () => {
-        //             console.log("Falhou");
-        //         },
-        //         complete: () => {
-        //             console.log("Completado");
-        //         }
+        //ao selecionar projeto, carregar novas etapas
+        selectProjectsHTML.addEventListener('input', loadPhases);
 
-        //     })
-        // }
+        function loadProjects(e) {
+
+            var id = e.currentTarget.value;
+
+            $.ajax({
+                type: 'get',
+                url: `/api/organizations/${id}`,
+                success: organization => {
+
+                    repopulateSelect(selectProjectsHTML, organization.projects);
+                    selectPhasesHTML.innerHTML = "";
+                    selectProjectsHTML.dispatchEvent(new Event('input'));
+
+                },
+                error: () => {
+                    console.log("Falhou");
+                }
+
+            })
+        }
+
+        function loadPhases(e) {
+            var id = e.currentTarget.value;
+
+            $.ajax({
+                type: 'get',
+                url: `/api/projects/${id}/phases`,
+                success: phases => {
+
+                    repopulateSelect(selectPhasesHTML, phases)
+
+                },
+                error: () => {
+                    console.log("Falhou");
+                }
+
+            })
+        }
+
+        function repopulateSelect(selectHTML, items) {
+
+            selectHTML.innerHTML = "";
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                selectHTML.innerHTML += `<option value="${item.id}" >${item.name}</option>`;
+            }
+
+        }
+
     </script>
 </body>
 
