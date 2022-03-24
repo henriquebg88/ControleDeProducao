@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 :root{
-    --main-color:           #4c68f8;
+    --main-color:           #738AFF;
     --main-text-color:      #939393;
     --main-border-color:    #CCC;
     --secondary-color:      #EDEDED;
@@ -13,7 +13,6 @@ body{
      background-size: cover;
 }
 header.row{
-    margin-top: 20px;
 }
 main.row {
     width: 700px;
@@ -45,6 +44,13 @@ a:hover {
 
 .primary-color{
     color: var(--main-color) !important;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px 0;
 }
 
 .content-center{
@@ -115,7 +121,7 @@ li.btn{
 
 .btn-primary{
     width: fit-content;
-    padding: 10px 30px;
+    padding: 20px 80px;
     background-color: var(--main-color);
     border-color: var(--main-border-color);
 }
@@ -140,6 +146,17 @@ form.input-time{
 }
 button.btn.btn-primary{
     margin: auto;
+}
+
+.start{
+    clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%);
+}
+.end{
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 10% 50%);
+}
+.btn-back{
+    clip-path: polygon(50% 0, 15% 50%, 50% 100%);
+    height: 66px;
 }
 
 .btn.disabled, .btn:disabled, fieldset:disabled .btn {

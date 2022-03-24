@@ -12,29 +12,37 @@
 
 <body>
 
-    <header th:replace="~{shared\header :: header}"></header>
+    <div class="container layout">
+        <header th:replace="~{shared\header :: header}"></header>
 
-    <div class="container">
-        <h1>Etapa</h1>
+        <main class="row">
+            <div class="container">
+                <h1>Etapa</h1>
 
-        <form action="#" method="post"
-            th:action="@{/phases/save}"
-            th:object="${phase}">
+                <form action="#" method="post"
+                      th:action="@{/phases/save}"
+                      th:object="${phase}">
 
-            <input  type="hidden"   th:field="*{project.id}" />
-            <input  type="hidden"   th:field="*{id}"/>
-            <input  type="text"     th:field="*{name}" class="form-control mb-4 col-4
-"                   placeholder="Nome" value="${phase.name}"
-            >
+                    <input  type="hidden"   th:field="*{project.id}" />
+                    <input  type="hidden"   th:field="*{id}"/>
 
-            <button type="submit" class="btn btn-primary col-2">Salvar</button>
+                    <lab>Nome:</lab>
+                    <input  type="text"     th:field="*{name}" class="form-control mb-4 col-4
+    "                   placeholder="Nome" value="${phase.name}"
+                    >
 
-        </form>
-        <hr/>
-        <a href="javascript:history.back()">Voltar</a>
+                    <button type="submit" class="btn btn-primary col-2">Salvar</button>
+
+                </form>
+
+            </div>
+        </main>
+
+
+
+        <footer th:replace="~{shared\footer :: footer}"></footer>
     </div>
 
-    <footer th:replace="~{shared\footer :: footer}"></footer>
 
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 </body>

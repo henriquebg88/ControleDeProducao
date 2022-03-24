@@ -7,7 +7,7 @@
 <body>
     <header class="row" th:fragment="header">
         <div  class="col">
-            <p class="fs-4 fw-normal" th:text="${#temporals.format(now, 'EEEE, dd MMMM')}"></p>
+            <p class="fs-4 fw-normal mb-0" th:text="${#temporals.format(now, 'EEEE, dd MMMM')}"></p>
             <p>Horas restantes</p>
         </div>
         <div class="col content-center">

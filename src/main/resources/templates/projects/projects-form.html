@@ -12,29 +12,35 @@
 
 <body>
 
-    <header th:replace="~{shared\header :: header}"></header>
+    <div class="container layout">
+        <header th:replace="~{shared\header :: header}"></header>
 
-    <div class="container">
-        <h1>Projeto</h1>
+        <main class="row">
+            <div class="container">
+                <h1 class="mb-3"> Projeto</h1>
 
-        <form action="#" method="post"
-            th:action="@{/projects/save}"
-            th:object="${project}">
+                <form action="#" method="post"
+                      th:action="@{/projects/save}"
+                      th:object="${project}">
 
-            <input  type="hidden"   th:field="*{organization.id}" />
-            <input  type="hidden"   th:field="*{id}"/>
-            <input  type="text"     th:field="*{name}" class="form-control mb-4 col-4
-"                   placeholder="Nome" value="${project.name}"
-            >
+                    <input  type="hidden"   th:field="*{organization.id}" />
+                    <input  type="hidden"   th:field="*{id}"/>
 
-            <button type="submit" class="btn btn-primary col-2">Salvar</button>
+                    <lab>Nome:</lab>
+                    <input  type="text"     th:field="*{name}" class="form-control mb-4 col-4
+    "                   placeholder="Nome" value="${project.name}"
+                    >
 
-        </form>
-        <hr/>
-        <a href="javascript:history.back()">Voltar</a>
+                    <button type="submit" class="btn btn-primary col-2 mt-3">Salvar</button>
+
+                </form>
+
+            </div>
+        </main>
+
+        <footer th:replace="~{shared\footer :: footer}"></footer>
     </div>
 
-    <footer th:replace="~{shared\footer :: footer}"></footer>
 
     <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
