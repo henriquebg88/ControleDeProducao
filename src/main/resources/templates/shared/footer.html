@@ -6,8 +6,19 @@
 </head>
 <body>
     <footer th:fragment="footer" class="row">
-        <a href="javascript:history.back()" class="btn btn-primary btn-back">
-        </a>
+        <div style="
+            display: flex;
+            justify-content: space-between;"
+        >
+            <a href="javascript:history.back()" class="btn btn-primary btn-back">
+            </a>
+            <a th:href="@{/menu}" class="menu-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </a>
+        </div>
     </footer>
 </body>
 </html>

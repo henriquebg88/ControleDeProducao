@@ -164,7 +164,7 @@ button.btn.btn-primary{
 }
 .btn-primary.disabled, .btn-primary:disabled {
     color: inherit;
-    background-color: inherit;
+    background-color: unset;
     border-color: inherit;
 }
 form.input-time input:focus-visible {
@@ -208,4 +208,31 @@ label.form-check-label {
 }
 .clean-select:focus-visible {
     outline: none;
+}
+.menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.menu a {
+    width: 100%;
+}
+
+.menu-icon{
+    width: fit-content;
+    grid-gap: 2px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+
+}
+.menu-icon div{
+    width: 34px;
+    height: 30px;
+    background-color: var(--main-color);
+}
+.menu-icon:hover div{
+    background: #8292e1;
+    border-color: inherit;
 }

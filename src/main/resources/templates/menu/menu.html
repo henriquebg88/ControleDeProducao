@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+</head>
+<body>
+
+    <div class="container layout">
+        <header th:replace="~{shared\header :: header}"></header>
+
+            <main class="row content-center">
+
+                <div class="menu">
+                    <a class="btn btn-primary disabled" >Relatório do mês</a>
+                    <a class="btn btn-primary disabled" >Meu banco de horas</a>
+                    <a class="btn btn-primary " th:href="@{/organizations}">Minhas organizações</a>
+                    <a class="btn btn-primary disabled" >Minha equipe</a>
+                </div>
+
+            </main>
+
+
+        <footer th:replace="~{shared\footer :: footer}"></footer>
+    </div>
+
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>
